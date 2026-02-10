@@ -379,9 +379,9 @@ Perfect for portfolios targeting:
 
 ## 📞 Contact
 
-[Your Name]
-[Your Email]
-[LinkedIn/GitHub]
+Tray Branch
+tray.d.branch@gmail.com
+https://www.linkedin.com/in/traydbranch
 
 ---
 
