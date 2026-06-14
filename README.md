@@ -1,6 +1,14 @@
 # Prompt Injection Detector
 
-A production-ready API service that detects prompt injection attacks in Large Language Model (LLM) inputs using rule-based pattern matching and behavioral heuristics.
+![CI](https://github.com/Auth3nticAI/Prompt_Injection_Detector/actions/workflows/ci.yml/badge.svg)
+
+A FastAPI service that flags likely prompt-injection attempts in LLM inputs using weighted
+rule-based pattern matching plus behavioral heuristics. It's a fast, deterministic *defense
+layer* — not a guarantee — with a SQLite audit trail and a 17-case test suite.
+
+> Scope note: this is a single-turn, regex-and-heuristic detector. It deliberately does **not**
+> use ML/embeddings (see *Limitations*). It catches the common, well-known injection shapes and
+> gives you a risk score + an allow/warn/block recommendation to build on.
 
 ## 🎯 What It Does
 
@@ -321,9 +329,9 @@ pytest tests/ -v --cov=app
 
 ## 📈 Performance
 
-- **Latency**: ~50-100ms per request (without ML)
-- **Throughput**: Hundreds of requests/second
-- **Database**: SQLite for simplicity (use PostgreSQL for production)
+Detection is pure-Python regex + heuristics with no network calls, so per-prompt analysis is
+sub-millisecond in practice; the only I/O is the SQLite audit write. SQLite is used for
+simplicity — point `DATABASE_URL` at Postgres for a real deployment.
 
 ## 🛡️ Security Considerations
 
@@ -361,28 +369,6 @@ Contributions welcome! Areas of interest:
 
 MIT License - see LICENSE file for details
 
-## 🎓 Use Cases
-
-This project demonstrates:
-
-- **ML Engineering**: Production-ready AI security
-- **API Design**: RESTful service with FastAPI
-- **Security Thinking**: Threat modeling and defense-in-depth
-- **Software Engineering**: Clean code, testing, documentation
-- **MLOps**: Logging, monitoring, versioning
-
-Perfect for portfolios targeting:
-- ML Engineer roles
-- AI Security positions
-- MLOps/Platform Engineer roles
-- Security Engineering (AI-adjacent)
-
 ## 📞 Contact
 
-Tray Branch
-tray.d.branch@gmail.com
-https://www.linkedin.com/in/traydbranch
-
----
-
-**Built with security in mind. Maintained with care.**
+Tray Branch — tray.d.branch@gmail.com — https://www.linkedin.com/in/traydbranch
